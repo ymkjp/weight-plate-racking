@@ -1,0 +1,75 @@
+{
+  "name": "weight-plate-racking",
+  "version": "1.0.0",
+  "description": "Library to calculate the optimal loading of weight plates",
+  "main": "index.js",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-transform-flow-strip-types": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-flow": "^7.8.3",
+    "argparse": "^1.0.10",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^25.1.0",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-env": "^1.7.0",
+    "babelify": "^8.0.0",
+    "browserify": "^16.5.0",
+    "eslint-plugin-flowtype": "^4.6.0",
+    "flow-bin": "^0.117.0",
+    "flow-typed": "^2.6.2",
+    "intelli-espower-loader": "^1.0.1",
+    "javascript-csv": "^1.0.7",
+    "jest": "^25.1.0",
+    "mocha": "^5.2.0",
+    "npm-run-all": "^4.1.5",
+    "onchange": "^6.1.0",
+    "power-assert": "^1.5.0",
+    "standardx": "^5.0.0",
+    "uglify-js": "^3.7.6"
+  },
+  "scripts": {
+    "test": "npm-run-all test:*",
+    "test:js": "npm-run-all lint:js && jest ",
+    "lint:js": "standard {src,test}/**/*.*js",
+    "build": "npm-run-all bundle && yarn run minify",
+    "bundle": "browserify src/weight-plate-racking.js -o build/bundle.js --standalone Cjt",
+    "minify": "uglifyjs --compress --mangle -o build/bundle.min.js -- build/bundle.js",
+    "watch": "npm-run-all --parallel watch:**",
+    "watch:js": "onchange  --delay 100 '*.json' '*.*js' 'src/**/*.*js' -- npm-run-all test",
+    "prepublish": "npm-run-all test:*",
+    "prestart": "yarn install",
+    "start": "npm-run-all watch"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "env": [
+      "jest"
+    ],
+    "plugin": [
+      "flowtype"
+    ]
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "env"
+          ]
+        }
+      ]
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ymkjp/weight-plate-racking.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ymkjp/weight-plate-racking/issues"
+  },
+  "homepage": "https://github.com/ymkjp/weight-plate-racking#readme"
+}

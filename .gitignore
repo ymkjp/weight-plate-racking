@@ -1,3 +1,10 @@
+# Project
+!/.editorconfig
+!/.travis.yml
+!/.nvmrc
+/build/
+!/build/.gitkeep
+
 # Logs
 logs
 *.log
